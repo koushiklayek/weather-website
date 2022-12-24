@@ -20,7 +20,9 @@ weatherForm.addEventListener('submit', (e) => {
     const location = searchElement.value
     message1.textContent = "Loading..." //while searching the location
     message2.textContent = ""   // erasing the previous weather data
-    fetch('http://localhost:3000/weather?address=' + location).then((response) => {
+    // fetch url for local http://localhost:3000/weather?address=
+    // using the hosted address as it's hosted
+    fetch('https://layek-weather-application.cyclic.app/weather?address=' + location).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 // console.log(data.error)
