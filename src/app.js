@@ -66,6 +66,25 @@ app.get("/weather", (req, res) => {
     })
 })
 
+app.get("/weather-location",(req,res)=>{
+    const latitude=req.query.latitude
+    const longitude=req.query.longitude
+    if (!req.query.latitude || !req.query.longitude) {
+        return res.send({
+            error: "You must provide an address"
+        })
+    }
+    forecast(latitude, longitude, (error, forecastData) => {
+        if (error) {
+            return res.send({ error })
+        }
+        res.send({
+            forecastData
+        })
+    })
+
+})
+
 app.get("/help/*", (req, res) => {
     res.render("404", {
         title: "404",
